@@ -14,13 +14,15 @@ const exampleImage =
 const clientId = '316692688195-86p7tm22f3ucmc45ncu83ld172h3ol69.apps.googleusercontent.com';
 
 FirebaseOptions firebaseConfig = const FirebaseOptions(
-    apiKey: "AIzaSyBMKbg9EeaBDB9ppZMnAa7QRuviT9SvjXc",
-    authDomain: "fresume-app.firebaseapp.com",
-    projectId: "fresume-app",
-    storageBucket: "fresume-app.appspot.com",
-    messagingSenderId: "316692688195",
-    appId: "1:316692688195:web:67db9776f226fd0b1513f6",
-    measurementId: "G-RBVRWJQVVW");
+    apiKey: "AIzaSyADMCSCxKdqf3eFE-IhsxJwilumg8M4ioA",
+    authDomain: "zresume-f819f.firebaseapp.com",
+    projectId: "zresume-f819f",
+    storageBucket: "zresume-f819f.appspot.com",
+    messagingSenderId: "389537531779",
+    appId: "1:389537531779:web:cd2637a873a70ba04398b6",
+    measurementId: "G-GB2626GDXQ"
+
+);
 
 Uuid uuid = const Uuid();
 
