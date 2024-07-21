@@ -70,7 +70,7 @@ class AuthGate extends ConsumerWidget {
       });
 
       if (snapshot == null) {
-        return const HomeAuthView();
+        return  HomeAuthView();
       }
 
       // Render your application if authenticated

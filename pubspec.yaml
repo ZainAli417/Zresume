@@ -27,7 +27,7 @@ dependencies:
   pdf_render: ^1.0.19
   printing: ^5.3.0
   universal_html: ^2.0.8
-  
+
   google_fonts: ^6.2.1
   json_serializable: ^6.8.0
   adaptive_theme: ^3.6.0
@@ -36,8 +36,10 @@ dependencies:
   firebase_auth: ^4.16.0
   firebase_core: ^2.24.2
   firebase_database: ^10.4.0
-  flutterfire_ui: ^0.4.3+20
+  #flutterfire_ui: ^0.4.3+20
+  google_sign_in: ^6.0.0
   url_strategy: ^0.2.0
+
 
 dev_dependencies:
   flutter_test:

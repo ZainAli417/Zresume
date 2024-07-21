@@ -1,7 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterfire_ui/auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:zresume/apis/auth.dart';
 import 'package:zresume/global/constants/constants.dart';
 import 'package:zresume/global/models/pdf_model.dart';
@@ -37,7 +38,7 @@ class HomeAuthView extends ConsumerWidget {
                     const LogoAndTitleRow(),
                     Expanded(
                       child: Row(
-                        children: const [
+                        children:  [
                           LoginButton(false),
                           ExampleImage(),
                         ],
@@ -53,7 +54,7 @@ class HomeAuthView extends ConsumerWidget {
         return Container(
           color: Pallete.primaryLightColor,
           child: Column(
-            children: const [
+            children:  [
               LogoAndTitleColumn(),
               ExampleImage(),
               SizedBox(height: 16),
@@ -89,11 +90,35 @@ class ExampleImage extends StatelessWidget {
 
 class LoginButton extends ConsumerWidget {
   final bool useMobileLayout;
-  const LoginButton(
-    this.useMobileLayout, {
-    Key? key,
-  }) : super(key: key);
+  LoginButton(
+      this.useMobileLayout, {
+        Key? key,
+      }) : super(key: key);
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  Future<void> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      final GoogleSignInAuthentication googleAuth = await googleUser!.authentication;
+
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      await _auth.signInWithCredential(credential);
+
+      // Optionally update Firestore here
+      User? currentUser = _auth.currentUser;
+      await FirebaseFirestore.instance
+          .collection('user')
+          .doc(currentUser!.uid)
+          .set({'uid': currentUser.uid, 'lastLoggedIn': DateTime.now()});
+    } catch (e) {
+      // Handle errors
+    }
+  }
   @override
   Widget build(BuildContext context, ref) {
     return Flexible(
@@ -109,34 +134,14 @@ class LoginButton extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              AuthFlowBuilder<OAuthController>(
-                flow: gConfig.createFlow(ref.watch(authApiProvider).firebaseAuth, AuthAction.signIn),
-                auth: ref.watch(authApiProvider).firebaseAuth,
-                config: const GoogleProviderConfiguration(clientId: clientId),
-                listener: (oldState, newState, controller) async {
-                  if (newState is SignedIn) {
-                    User? currentUser = ref.watch(authApiProvider).firebaseAuth.currentUser;
-
-                    await ref
-                        .watch(firebaseFirestoreProvider)
-                        .collection('user')
-                        .doc(currentUser!.uid)
-                        .set({'uid': currentUser.uid, 'lastLoggedIn': DateTime.now()});
-                  }
-                },
-                builder: (context, state, controller, _) {
-                  return SimpleElevatedButton(
-                      color: Pallete.backgroundColor,
-                      textColor: Pallete.primaryColor,
-                      buttonHeight: 50,
-                      buttonWidth: double.infinity,
-                      roundedRadius: 5,
-                      onPressed: () {
-                        controller.signInWithProvider(TargetPlatform.android);
-                      },
-                      text: 'Sign in with Google');
-                },
-              ),
+              SimpleElevatedButton(
+                  color: Pallete.backgroundColor,
+                  textColor: Pallete.primaryColor,
+                  buttonHeight: 50,
+                  buttonWidth: double.infinity,
+                  roundedRadius: 5,
+                  onPressed: signInWithGoogle,
+                  text: 'Sign in with Google'),
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
@@ -170,6 +175,9 @@ class LoginButton extends ConsumerWidget {
       ),
     );
   }
+
+
+
 }
 
 class LogoAndTitleRow extends StatelessWidget {
@@ -213,7 +221,7 @@ class LogoAndTitleRow extends StatelessWidget {
                       await launch('https://www.linkedin.com/in/varun-bhalerao-677a48179/');
                     },
                     child: Text(
-                      'Varun Bhalerao',
+                      'Zain Ali',
                       style: subtitle16.copyWith(decoration: TextDecoration.underline, color: Pallete.primaryColor),
                     ),
                   ),
@@ -262,10 +270,10 @@ class LogoAndTitleColumn extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () async {
-                  await launch('https://www.linkedin.com/in/varun-bhalerao-677a48179/');
+                  await launchUrl('https://www.linkedin.com/in/varun-bhalerao-677a48179/' as Uri);
                 },
                 child: Text(
-                  'Varun Bhalerao',
+                  'Zain Ali',
                   style: subtitle16.copyWith(decoration: TextDecoration.underline, color: Pallete.primaryColor),
                 ),
               ),
