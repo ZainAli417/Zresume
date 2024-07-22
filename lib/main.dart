@@ -15,10 +15,12 @@ import 'package:get/get.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:url_strategy/url_strategy.dart';
 
+import 'firebase_options.dart';
 
-//Test commit
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();  // Ensure the binding is initialized
   setPathUrlStrategy();
+  //await initFirebase();
   await Firebase.initializeApp(
     options: firebaseConfig,
   );
@@ -26,20 +28,26 @@ Future<void> main() async {
   runApp(const ProviderScope(child: MyApp()));
 }
 
+/*Future<void> initFirebase() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+}*/
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "Fresume",
+      title: "Zresume",
       debugShowCheckedModeBanner: false,
       builder: (context, widget) => ResponsiveWrapper.builder(
         widget!,
         background: Container(
           color: Colors.grey.shade50,
         ),
-      
+
         defaultScale: true,
         breakpoints: const [
           ResponsiveBreakpoint.resize(450, name: MOBILE),
@@ -63,14 +71,14 @@ class AuthGate extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     return ref.watch(authStateChangeProvider).when(data: (snapshot) {
-      WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
         if (snapshot != null) {
           Get.offAndToNamed('/home');
         }
       });
 
       if (snapshot == null) {
-        return  HomeAuthView();
+        return const HomeAuthView();
       }
 
       // Render your application if authenticated

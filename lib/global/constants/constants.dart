@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
@@ -6,20 +5,22 @@ import 'package:uuid/uuid.dart';
 
 
 const logo =
-    "https://firebasestorage.googleapis.com/v0/b/fresume-app.appspot.com/o/Fresume%20(1).png?alt=media&token=8c30ca37-1a98-4ff8-b4c6-f97f9dc7263f";
+    "https://firebasestorage.googleapis.com/v0/b/zresume-67ec9.appspot.com/o/logo.png?alt=media&token=1d385908-9d14-44cf-be4e-391c2ebc0b9c";
 
 const exampleImage =
-    "https://firebasestorage.googleapis.com/v0/b/fresume-app.appspot.com/o/Screenshot%202022-01-14%20at%207.07.21%20PM.png?alt=media&token=aab16e72-be29-4792-8e04-f0bb07ec3458";
+    "https://firebasestorage.googleapis.com/v0/b/zresume-67ec9.appspot.com/o/Template.jpg?alt=media&token=fbc72545-0bdf-4666-9f5a-6272c7ce2e9e";
 
 
 FirebaseOptions firebaseConfig = const FirebaseOptions(
-    apiKey: "AIzaSyADMCSCxKdqf3eFE-IhsxJwilumg8M4ioA",
-    authDomain: "zresume-f819f.firebaseapp.com",
-    projectId: "zresume-f819f",
-    storageBucket: "zresume-f819f.appspot.com",
-    messagingSenderId: "389537531779",
-    appId: "1:389537531779:web:cd2637a873a70ba04398b6",
-    measurementId: "G-GB2626GDXQ"
+
+    apiKey: "AIzaSyACH3_Iga66KGB2z8TXxbI_tl6DC7LBpPg",
+    authDomain: "zresume-67ec9.firebaseapp.com",
+    projectId: "zresume-67ec9",
+    storageBucket: "zresume-67ec9.appspot.com",
+    messagingSenderId: "535015116281",
+    appId: "1:535015116281:web:6ee538babd29ec42e88128",
+    measurementId: "G-FR8FSM33VV"
+
 );
 
 Uuid uuid = const Uuid();

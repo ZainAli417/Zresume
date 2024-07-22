@@ -23,7 +23,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -47,30 +50,21 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyADMCSCxKdqf3eFE-IhsxJwilumg8M4ioA',
-    appId: '1:389537531779:web:cd2637a873a70ba04398b6',
-    messagingSenderId: '389537531779',
-    projectId: 'zresume-f819f',
-    authDomain: 'zresume-f819f.firebaseapp.com',
-    storageBucket: 'zresume-f819f.appspot.com',
-    measurementId: 'G-GB2626GDXQ',
+    apiKey: 'AIzaSyACH3_Iga66KGB2z8TXxbI_tl6DC7LBpPg',
+    appId: '1:535015116281:web:6ee538babd29ec42e88128',
+    messagingSenderId: '535015116281',
+    projectId: 'zresume-67ec9',
+    authDomain: 'zresume-67ec9.firebaseapp.com',
+    storageBucket: 'zresume-67ec9.appspot.com',
+    measurementId: 'G-FR8FSM33VV',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCPOnRMe7cnqbK85mxcJodk5jdKpU8iLtE',
-    appId: '1:389537531779:android:885018abcbfae7264398b6',
-    messagingSenderId: '389537531779',
-    projectId: 'zresume-f819f',
-    storageBucket: 'zresume-f819f.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBk-Es7AJAAF1S50XS2WdYwfjD5VqC-3BY',
-    appId: '1:389537531779:ios:1efde4b0430b5be14398b6',
-    messagingSenderId: '389537531779',
-    projectId: 'zresume-f819f',
-    storageBucket: 'zresume-f819f.appspot.com',
-    iosBundleId: 'com.example.zresume',
+    apiKey: 'AIzaSyB-tGZOK6SVm9EWEqqbova6KvMwPCvPmh8',
+    appId: '1:535015116281:android:d6a2ded5adeaeec2e88128',
+    messagingSenderId: '535015116281',
+    projectId: 'zresume-67ec9',
+    storageBucket: 'zresume-67ec9.appspot.com',
   );
 
 }
