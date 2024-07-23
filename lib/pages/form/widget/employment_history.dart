@@ -33,7 +33,7 @@ class EmploymentHistory extends ConsumerWidget {
               top: 10,
             ),
             child: Text(
-              'Employment History',
+              'Employment Experience',
               style: headline20.copyWith(fontWeight: FontWeight.w600),
             ),
           ),
@@ -57,15 +57,19 @@ class EmploymentHistory extends ConsumerWidget {
               itemCount: employmentList.length,
             ),
           ),
-          Padding(
+          Center(
+          child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: SimpleElevatedButton(
-                buttonWidth: double.infinity,
+                buttonWidth: 200,
+                buttonHeight: 40,
+
                 onPressed: () {
                   ref.read(pdfProvider.notifier).addEmploymentSection(Section.createEmpty());
                 },
-                text: 'Add another employment'),
+                text: 'Add Employment'),
           )
+          ),
         ],
       ),
     );
@@ -120,7 +124,7 @@ class _SectionFullWidgetState extends ConsumerState<EmploymentFullWidget> {
     });
 
     return BorderedExpansionTile(
-      title: widget.section.textOne ?? "Test",
+      title: widget.section.textOne ?? "Android Developer,Wordpress,Flutter....",
       children: [
         Row(
           children: [

@@ -20,13 +20,13 @@ class _FormSideState extends State<FormSide> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return const SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        padding: EdgeInsets.symmetric(vertical: 16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             PersonalDetails(),
             SizedBox(height: 8),
             ProfileSummary(),

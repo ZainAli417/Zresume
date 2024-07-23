@@ -5,7 +5,7 @@ import 'package:uuid/uuid.dart';
 
 
 const logo =
-    "https://firebasestorage.googleapis.com/v0/b/zresume-67ec9.appspot.com/o/logo.png?alt=media&token=1d385908-9d14-44cf-be4e-391c2ebc0b9c";
+    "https://firebasestorage.googleapis.com/v0/b/zresume-67ec9.appspot.com/o/logo.png?alt=media&token=9ffb8d3e-06e8-4f1a-bfcf-00cb9371162e";
 
 const exampleImage =
     "https://firebasestorage.googleapis.com/v0/b/zresume-67ec9.appspot.com/o/Template.jpg?alt=media&token=fbc72545-0bdf-4666-9f5a-6272c7ce2e9e";

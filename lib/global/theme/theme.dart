@@ -192,8 +192,8 @@ TextStyle caption12 = GoogleFonts.notoSans(
     inherit: true,
     color: Pallete.textColor,
 
-    fontSize: 12,
-    fontWeight: FontWeight.w400,
+    fontSize: 13,
+    fontWeight: FontWeight.w500,
     fontStyle: FontStyle.normal,
     letterSpacing: 0.4,
     textBaseline: TextBaseline.alphabetic,

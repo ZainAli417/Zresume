@@ -130,7 +130,7 @@ class _ResumeEditState extends ConsumerState<ResumeEdit> with AutomaticKeepAlive
               color: Pallete.primaryColor,
             )),
         title: Text(
-          'FRESUME',
+          'ZRESUME',
           style: headline20.copyWith(
               color: Pallete.primaryColor, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
         ),
@@ -151,7 +151,7 @@ class _ResumeEditState extends ConsumerState<ResumeEdit> with AutomaticKeepAlive
                 iconTheme: const IconThemeData(color: Pallete.primaryColor),
                 centerTitle: false,
                 title: Text(
-                  'FRESUME',
+                  'ZRESUME',
                   style: headline20.copyWith(
                       color: Pallete.primaryColor, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
                 ),

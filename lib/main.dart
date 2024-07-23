@@ -20,19 +20,19 @@ import 'firebase_options.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();  // Ensure the binding is initialized
   setPathUrlStrategy();
-  //await initFirebase();
-  await Firebase.initializeApp(
-    options: firebaseConfig,
-  );
+  await initFirebase();
+//  await Firebase.initializeApp(
+  //  options: firebaseConfig,
+  //);
 
   runApp(const ProviderScope(child: MyApp()));
 }
 
-/*Future<void> initFirebase() async {
+Future<void> initFirebase() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-}*/
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

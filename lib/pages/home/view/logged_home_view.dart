@@ -52,7 +52,7 @@ class LoggedHomeAuthView extends ConsumerWidget {
                 elevation: 0,
                 centerTitle: false,
                 title: Text(
-                  'YOUR FRESUME ACCOUNT',
+                  'YOUR ZRESUME ACCOUNT',
                   style: headline20.copyWith(color: Pallete.primaryColor, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -106,7 +106,7 @@ class AccountWeb extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 16),
               child: Text(
-                'YOUR FRESUME ACCOUNT'.toUpperCase(),
+                'YOUR ZRESUME ACCOUNT'.toUpperCase(),
                 style: headline20.copyWith(color: Pallete.primaryColor, fontWeight: FontWeight.bold),
               ),
             ),
@@ -286,7 +286,7 @@ class AddResumeWidget extends ConsumerWidget {
                 children: [
                   Text(pdfModel.resumePersonal!.firstName!,
                       style: subtitle14.copyWith(color: Pallete.textColor, fontWeight: FontWeight.bold)),
-                  Text('Last saved ' + timeAgoSinceDate(pdfModel.lastUpdated),
+                  Text('Last saved ${timeAgoSinceDate(pdfModel.lastUpdated)}',
                       style: subtitle14.copyWith(color: Colors.grey.shade400)),
                 ],
               ),

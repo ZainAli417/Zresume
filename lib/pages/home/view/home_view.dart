@@ -38,7 +38,7 @@ class HomeAuthView extends ConsumerWidget {
                     const LogoAndTitleRow(),
                     Expanded(
                       child: Row(
-                        children:  [
+                        children: [
                           LoginButton(false),
                           ExampleImage(),
                         ],
@@ -54,7 +54,7 @@ class HomeAuthView extends ConsumerWidget {
         return Container(
           color: Pallete.primaryLightColor,
           child: Column(
-            children:  [
+            children: [
               LogoAndTitleColumn(),
               ExampleImage(),
               SizedBox(height: 16),
@@ -78,8 +78,8 @@ class ExampleImage extends StatelessWidget {
       child: Container(
         color: Pallete.primaryLightColor,
         child: Center(
-          child: Image.network(
-            exampleImage,
+          child: Image.asset(
+            'assets/Template.jpg',
             height: 400,
           ),
         ),
@@ -90,17 +90,20 @@ class ExampleImage extends StatelessWidget {
 
 class LoginButton extends ConsumerWidget {
   final bool useMobileLayout;
+
   LoginButton(
-      this.useMobileLayout, {
-        Key? key,
-      }) : super(key: key);
+    this.useMobileLayout, {
+    Key? key,
+  }) : super(key: key);
+
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<void> signInWithGoogle() async {
+  Future<void> signInWithGoogle(BuildContext context) async {
     try {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-      final GoogleSignInAuthentication googleAuth = await googleUser!.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser!.authentication;
 
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
@@ -115,12 +118,17 @@ class LoginButton extends ConsumerWidget {
           .collection('user')
           .doc(currentUser!.uid)
           .set({'uid': currentUser.uid, 'lastLoggedIn': DateTime.now()});
+
+      // Navigate to /resume after successful sign-in
+      Get.toNamed('/resume');
     } catch (e) {
       // Handle errors
+      print(e);
     }
   }
+
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Flexible(
       child: Container(
         decoration: BoxDecoration(
@@ -134,30 +142,47 @@ class LoginButton extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SimpleElevatedButton(
-                  color: Pallete.backgroundColor,
-                  textColor: Pallete.primaryColor,
-                  buttonHeight: 50,
-                  buttonWidth: double.infinity,
-                  roundedRadius: 5,
-                  onPressed: signInWithGoogle,
-                  text: 'Sign in with Google'),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  'OR',
-                  style: subtitle14.copyWith(color: Pallete.primaryLightColor, fontWeight: FontWeight.w400),
+              GestureDetector(
+                onTap: () => signInWithGoogle(context),
+                child: Image.asset(
+                  'assets/google.png',
+                  width: 250, // Set your desired width
+                  height: 50, // Set your desired height
                 ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Row(
+                children: <Widget>[
+                  const Expanded(
+                      child: Divider(
+                          color: Pallete.primaryLightColor, thickness: 1)),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                    child: Text('OR',
+                        style: subtitle14.copyWith(
+                            color: Pallete.primaryLightColor,
+                            fontWeight: FontWeight.w400)),
+                  ),
+                  const Expanded(
+                      child: Divider(
+                          color: Pallete.primaryLightColor, thickness: 1)),
+                ],
+              ),
+              const SizedBox(
+                height: 16,
               ),
               SimpleElevatedButton(
                   color: Pallete.backgroundColor,
                   textColor: Pallete.primaryColor,
                   buttonHeight: 50,
-                  buttonWidth: double.infinity,
+                  buttonWidth: 300,
                   roundedRadius: 5,
                   onPressed: () {
-                    ref.watch(pdfProvider.notifier).editPdf(PdfModel.createEmpty().copyWith(pdfId: 'noSave'),);
-
+                    ref.watch(pdfProvider.notifier).editPdf(
+                          PdfModel.createEmpty().copyWith(pdfId: 'noSave'),
+                        );
                     Get.toNamed('/resume');
                   },
                   text: 'Continue without signing in'),
@@ -166,7 +191,7 @@ class LoginButton extends ConsumerWidget {
               ),
               Text(
                 'Using your Google account will allow you to save up to 3 resumes, you can still continue without signing in but your resume will not be saved once you leave/refresh the site.',
-                style: caption12.copyWith(color: Pallete.backgroundColor),
+                style: caption12.copyWith(color: Pallete.warning),
                 textAlign: TextAlign.center,
               ),
             ],
@@ -175,9 +200,6 @@ class LoginButton extends ConsumerWidget {
       ),
     );
   }
-
-
-
 }
 
 class LogoAndTitleRow extends StatelessWidget {
@@ -191,14 +213,16 @@ class LogoAndTitleRow extends StatelessWidget {
       color: Pallete.primaryLightColor,
       child: Row(
         children: [
-          Container(
-            margin: const EdgeInsets.all(36),
-            height: 100,
-            width: 100,
-            decoration: BoxDecoration(
-              borderRadius: Shape.roundedShapeAll(20),
-              image: const DecorationImage(
-                image: NetworkImage(logo),
+          Positioned(
+            child: Container(
+              height: 250,
+              width: 250,
+              decoration: BoxDecoration(
+                borderRadius: Shape.roundedShapeAll(20),
+                image: const DecorationImage(
+                  image: AssetImage('assets/logo.png'),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
@@ -207,8 +231,9 @@ class LogoAndTitleRow extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'CREATE A FREE RESUME NOW!',
-                style: headline34.copyWith(color: Pallete.primaryColor, fontWeight: FontWeight.bold),
+                'Create A Professional Resume Now!',
+                style: headline34.copyWith(
+                    color: Pallete.primaryColor, fontWeight: FontWeight.bold),
               ),
               Row(
                 children: [
@@ -218,11 +243,13 @@ class LogoAndTitleRow extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () async {
-                      await launch('https://www.linkedin.com/in/varun-bhalerao-677a48179/');
+                      await launchUrl('https://zainaliportfolio.000.pe' as Uri);
                     },
                     child: Text(
                       'Zain Ali',
-                      style: subtitle16.copyWith(decoration: TextDecoration.underline, color: Pallete.primaryColor),
+                      style: subtitle16.copyWith(
+                          decoration: TextDecoration.underline,
+                          color: Pallete.primaryColor),
                     ),
                   ),
                 ],
@@ -244,22 +271,24 @@ class LogoAndTitleColumn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Pallete.primaryLightColor,
+      padding: const EdgeInsets.only(
+          top: 40), // Added space from the top of the screen
       child: Column(
         children: [
           Container(
-            margin: const EdgeInsets.all(36),
-            height: 100,
-            width: 100,
+            height: 180,
+            width: 180,
             decoration: BoxDecoration(
               borderRadius: Shape.roundedShapeAll(20),
               image: const DecorationImage(
-                image: NetworkImage(logo),
+                image: AssetImage('assets/logo.png'),
               ),
             ),
           ),
           Text(
-            'CREATE A FREE RESUME NOW!',
-            style: headline20.copyWith(color: Pallete.primaryColor, fontWeight: FontWeight.bold),
+            'Create A Professional Resume Now!',
+            style: headline20.copyWith(
+                color: Pallete.primaryColor, fontWeight: FontWeight.bold),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -270,11 +299,13 @@ class LogoAndTitleColumn extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () async {
-                  await launchUrl('https://www.linkedin.com/in/varun-bhalerao-677a48179/' as Uri);
+                  await launchUrl(Uri.parse('https://zainaliportfolio.000.pe'));
                 },
                 child: Text(
                   'Zain Ali',
-                  style: subtitle16.copyWith(decoration: TextDecoration.underline, color: Pallete.primaryColor),
+                  style: subtitle16.copyWith(
+                      decoration: TextDecoration.underline,
+                      color: Pallete.primaryColor),
                 ),
               ),
             ],

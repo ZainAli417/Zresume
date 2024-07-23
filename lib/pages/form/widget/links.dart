@@ -33,7 +33,7 @@ class LinksInfo extends ConsumerWidget {
               top: 10,
             ),
             child: Text(
-              'Your Links',
+              'Social Links',
               style: headline20.copyWith(fontWeight: FontWeight.w600),
             ),
           ),
@@ -57,15 +57,18 @@ class LinksInfo extends ConsumerWidget {
               itemCount: linksList.length,
             ),
           ),
-          Padding(
+         Center(
+          child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: SimpleElevatedButton(
-                buttonWidth: double.infinity,
+                buttonWidth: 200,
+                buttonHeight: 40,
                 onPressed: () {
                   ref.read(pdfProvider.notifier).addLink(Links.createEmpty());
                 },
-                text: 'Add another link'),
+                text: 'Add Socials'),
           )
+         ),
         ],
       ),
     );
@@ -105,40 +108,39 @@ class _SectionFullWidgetState extends ConsumerState<LinksFullWidget> {
     });
 
     return BorderedExpansionTile(
-      title: widget.link.linkName ?? "Test",
+      title: widget.link.linkName ?? "Github,LInkedIN,Behance,Fiver....",
       children: [
-
-        Row(
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Flexible(
-              child: RectBorderFormField(
-                textEditingController: linkNameController,
-                labelText: 'Link Name',
-                onTextChanged: (val) {
-                  ref.read(pdfProvider.notifier).editLink(widget.link.copyWith(linkName: val));
-                },
-              ),
+            RectBorderFormField(
+              textEditingController: linkNameController,
+              labelText: 'Platform',
+              onTextChanged: (val) {
+                ref.read(pdfProvider.notifier).editLink(widget.link.copyWith(linkName: val));
+              },
             ),
-            Flexible(
-              child: RectBorderFormField(
-                textEditingController: linkUrlController,
-                labelText: 'Link URL',
-                onTextChanged: (val) {
-                  ref.read(pdfProvider.notifier).editLink(widget.link.copyWith(linkUrl: val));
-                },
-              ),
+            SizedBox(height: 8), // Space between fields
+            RectBorderFormField(
+              textEditingController: linkUrlController,
+              labelText: 'URL',
+              onTextChanged: (val) {
+                ref.read(pdfProvider.notifier).editLink(widget.link.copyWith(linkUrl: val));
+              },
             ),
           ],
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: SimpleOutlinedButton(
-              color: Pallete.errorColor,
-              buttonWidth: double.infinity,
-              onPressed: () => widget.onPressed(),
-              text: 'Remove this link'),
-        )
+            color: Pallete.errorColor,
+            buttonWidth: double.infinity,
+            onPressed: () => widget.onPressed(),
+            text: 'Remove this link',
+          ),
+        ),
       ],
     );
+
   }
 }
