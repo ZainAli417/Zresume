@@ -55,10 +55,34 @@ class _PersonalDetailsState extends ConsumerState<PersonalDetails> {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Text(
-              'Personal Details',
-              style: headline20.copyWith(fontWeight: FontWeight.w600),
-            ),
+
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+
+                children: [
+                  Text(
+                    'Personal Details',
+                    style: headline20.copyWith(fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(height: 8),
+                  Container(
+                    height: 3,
+                    width: 150,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.indigo.withOpacity(0.9),
+                          Colors.purple.withOpacity(0.4),
+                          Colors.purpleAccent.withOpacity(0.1),
+                        ],
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                      ),
+                    ),
+                  ),
+                ],
+              )
+
           ),
           RectBorderFormField(
             textEditingController: emailController,
@@ -99,7 +123,7 @@ class _PersonalDetailsState extends ConsumerState<PersonalDetails> {
                   textEditingController: jobRoleController,
                   initialValue: returnCorrectStringString(personal.jobTitle),
                   labelText: 'Job Role',
-                  hintText: 'eg. Software Developer',
+                  hintText: 'eg. Android/Web Developer',
                   onTextChanged: (val) {
                     ref.read(pdfProvider.notifier).editPersonal(personal.copyWith(jobTitle: val));
                   },
@@ -110,6 +134,7 @@ class _PersonalDetailsState extends ConsumerState<PersonalDetails> {
                   textEditingController: phoneController,
                   initialValue: returnCorrectStringString(personal.email),
                   labelText: 'Phone Number',
+                  hintText: '+92xxx-xxxxxxx',
                   onTextChanged: (val) {
                     ref.read(pdfProvider.notifier).editPersonal(personal.copyWith(phoneNumber: val));
                   },

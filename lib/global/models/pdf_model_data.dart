@@ -20,47 +20,47 @@ PdfModel pdfModelData = _pdfEmpty.copyWith(
 Section employmentSectionData = const Section(
     sectionId: 'employmentSection',
     textOne: 'Flutter Developer',
-    textTwo: 'Naturally Plus Singapore Pte Ltd',
-    textThree: 'Singapore',
-    startDate: 'JUNE 2021',
+    textTwo: 'ZBMTech Rawalpindi',
+    textThree: 'Pakistan',
+    startDate: 'JUNE 2024',
     endDate: 'PRESENT',
     description:
-        'I am a motivated IT graduate looking forward to expanding my knowledge and career in the IT sector. Along with that, I want to experience working with professionals in the field so that I am able to stay up-to-date and learn the best practices that should be used while working in the IT sector. As for me, some of my greatest strengths are communicating and working alongside my peers.');
+        'With a profound expertise in Cyber Security, Web Development, and Mobile App Development, I am a dedicated professional committed to continuous learning and technological advancement. As a native Linux user, I specialize in network security configurations and Windows troubleshooting. My proficiency extends to web and Android development, particularly in Flutter app development, where I craft exceptional digital experiences. Certified by Google, IBM, Coursera, Meta and EC-Council, I excel in IT support and virtual machine installation using Hyper-V and Sandbox environments. Proficient in MS Office 365 products, I streamline operations and drive productivity. My professional journey is driven by a passion for crafting exceptional digital experiences and a dedication to delivering results that exceed expectations. I thrive on challenges and am enthusiastic about tackling new projects and embracing innovative solutions.');
 
 Section activitySectionData = const Section(
     sectionId: 'activitySection',
-    textOne: 'Member',
-    textTwo: 'Singapore Computer Society (SCS) Student Chapter',
-    textThree: 'Singapore',
-    startDate: 'AUG 2019',
-    endDate: 'SEP 2019',
+    textOne: 'Blogger',
+    textTwo: 'Blogspot Inc.',
+    textThree: 'Pakistan',
+    startDate: 'AUG 2022',
+    endDate: 'SEP 2022',
     description:
-        'I have attended tech events regularly as well as meetings. I have also helped in arranging and promotion of SCS school events such as workshops and industry visits to not only broaden my views but also my peers. I  was also in charge of pictures of the events which will be used for promotions.');
+        'I have Created a Blog to help new upcoming students to have a brief overview for the past papers, curriculum and courses offered by university.Visit https://aridpastpaper.blogspot.com');
 
 Section educationSectionData = const Section(
     sectionId: 'educationSection',
-    textOne: 'University of Newcastle, Australia',
-    textTwo: 'Bachelor of Information Technology',
-    textThree: 'Singapore',
-    startDate: 'SEP 2020',
-    endDate: 'MAY 2022',
+    textOne: 'PMAS Arid Agriculture University of Rawalpindi',
+    textTwo: 'Bachelor of Computer Science',
+    textThree: 'Pakistan',
+    startDate: 'OCT 2020',
+    endDate: 'OCT 2024',
     description:
-        'I graduated with double majors in Business Technology and Systems Development, during this undergraduate program I learned different development frameworks like ASP.NET for the web, Xamarin for mobile, UWP (Universal Windows Platform) for creating a desktop application. Along with this I also learned to use business and prototyping software like Power-Bi.');
+        'I graduated with BS(Hons.) in  Computer Science , during this undergraduate program I learned different development frameworks like ASP.NET for the web, Java for mobile, C-Sharp for creating a desktop application. Along with this I also learned to use database and server managing software like XAMP,SQL,MONGODB.');
 
 Summary summary = const Summary(
     professionalSummary:
-        'I am a motivated IT graduate looking forward to expanding my knowledge and career in the IT sector. Along with that, I want to experience working with professionals in the field so that I am able to stay up-to-date and learn the best practices that should be used while working in the IT sector. As for me, some of my greatest strengths are communicating and working alongside my peers.');
+        'I am a motivated CS graduate looking forward to expanding my knowledge and career in the IT sector. Along with that, I want to experience working with professionals in the field so that I am able to stay up-to-date and learn the best practices that should be used while working in the IT sector. As for me, some of my greatest strengths are communicating and working alongside my peers.');
 
 Personal personalData = const Personal(
-  firstName: 'Varun',
-  lastName: 'Bhalerao',
-  jobTitle: 'Full Stack Developer',
-  email: 'varunbhalerao5902@gmail.com',
-  phoneNumber: '8975351866',
+  firstName: 'Zain',
+  lastName: 'Ali',
+  jobTitle: 'Flutter App Developer',
+  email: 'alimalik20102019@gmail.com',
+  phoneNumber: '+923196051338',
 );
 
 Links linksData =
-    const Links(linksId: '01', linkName: 'Linkedin', linkUrl: 'https://www.linkedin.com/in/varun-bhalerao-677a48179/');
+    const Links(linksId: '01', linkName: 'Linkedin', linkUrl: 'https://www.linkedin.com/in/zainali417');
 
 List<Skill> skillsData = const [
   Skill(skillId: '01', skillName: "Flutter"),
@@ -71,12 +71,12 @@ List<Skill> skillsData = const [
   Skill(skillId: '06', skillName: "Python"),
   Skill(skillId: '07', skillName: "Java"),
   Skill(skillId: '08', skillName: "Javascript"),
-  Skill(skillId: '09', skillName: "Canva"),
-  Skill(skillId: '10', skillName: "GCP"),
+  Skill(skillId: '09', skillName: "Shell Scripting"),
+  Skill(skillId: '10', skillName: "White Labeling and Error Solving"),
 ];
 
 List<Skill> language = const [
   Skill(skillId: '01', skillName: "English"),
-  Skill(skillId: '02', skillName: "Hindi"),
-  Skill(skillId: '03', skillName: "Marathi"),
+  Skill(skillId: '02', skillName: "Urdu"),
+  Skill(skillId: '03', skillName: "Turkish"),
 ];

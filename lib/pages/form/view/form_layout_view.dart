@@ -56,7 +56,7 @@ class _ResumeEditState extends ConsumerState<ResumeEdit> with AutomaticKeepAlive
   void initState() {
     super.initState();
 
-    timer = Timer.periodic(const Duration(seconds: 30), (timer) async {
+    timer = Timer.periodic(const Duration(seconds: 120), (timer) async {
       updateResume();
     });
   }
@@ -74,7 +74,7 @@ class _ResumeEditState extends ConsumerState<ResumeEdit> with AutomaticKeepAlive
     List<Widget> actionButton() {
       return [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: SimpleOutlinedButton(
               onPressed: () async {
                 ref.read(pdfProvider.notifier).editPdf(pdfModelData);
@@ -82,7 +82,7 @@ class _ResumeEditState extends ConsumerState<ResumeEdit> with AutomaticKeepAlive
               text: 'Fill'),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: SimpleOutlinedButton(
               onPressed: () async {
                 await Printing.sharePdf(
@@ -92,7 +92,7 @@ class _ResumeEditState extends ConsumerState<ResumeEdit> with AutomaticKeepAlive
         ),
         if (widget.uid != null)
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child: SimpleOutlinedButton(
                 onPressed: () async {
                   try {
@@ -192,7 +192,7 @@ class _ResumeEditState extends ConsumerState<ResumeEdit> with AutomaticKeepAlive
                             blurRadius: 6.0,
                           ),
                         ],
-                        borderRadius: Shape.roundedShapeOnly(topLeft: 20, topRight: 20),
+                        borderRadius: Shape.roundedShapeOnly(topLeft: 10, topRight: 10),
                       ),
                       child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: actionButton()),
                     ),

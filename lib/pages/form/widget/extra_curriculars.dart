@@ -32,10 +32,34 @@ class Extracurriculars extends ConsumerWidget {
               bottom: 20,
               top: 10,
             ),
-            child: Text(
-              'Extra-curricular activities',
-              style: headline20.copyWith(fontWeight: FontWeight.w600),
-            ),
+
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+
+                children: [
+                  Text(
+                    'Extra-Curricular Activities',
+                    style: headline20.copyWith(fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(height: 8),
+                  Container(
+                    height: 3,
+                    width:240,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.indigo.withOpacity(0.9),
+                          Colors.purple.withOpacity(0.4),
+                          Colors.purpleAccent.withOpacity(0.1),
+                        ],
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                      ),
+                    ),
+                  ),
+                ],
+              )
+
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -57,15 +81,18 @@ class Extracurriculars extends ConsumerWidget {
               itemCount: activityList.length,
             ),
           ),
-          Padding(
+          Center(
+          child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: SimpleElevatedButton(
-                buttonWidth: double.infinity,
+                buttonWidth: 200,
+                buttonHeight: 40,
                 onPressed: () {
                   ref.read(pdfProvider.notifier).addActivitySection(Section.createEmpty());
                 },
-                text: 'Add another activity'),
+                text: 'Add Activity+'),
           )
+    ),
         ],
       ),
     );
@@ -127,7 +154,7 @@ class _SectionFullWidgetState extends ConsumerState<ActivityFullWidget> {
             Flexible(
               child: RectBorderFormField(
                 textEditingController: jobController,
-                labelText: 'Function Title',
+                labelText: 'Activity Title',
                 onTextChanged: (val) {
                   ref.read(pdfProvider.notifier).editActivitySection(widget.section.copyWith(textOne: val));
                 },
@@ -136,7 +163,7 @@ class _SectionFullWidgetState extends ConsumerState<ActivityFullWidget> {
             Flexible(
               child: RectBorderFormField(
                 textEditingController: employerController,
-                labelText: 'Employer',
+                labelText: 'Post/Position',
                 onTextChanged: (val) {
                   ref.read(pdfProvider.notifier).editActivitySection(widget.section.copyWith(textTwo: val));
                 },
@@ -147,29 +174,29 @@ class _SectionFullWidgetState extends ConsumerState<ActivityFullWidget> {
         Row(
           children: [
             Flexible(
-              child: Row(
-                children: [
-                  Flexible(
-                    child: RectBorderFormField(
-                      textEditingController: startDateController,
-                      labelText: 'Start Date',
-                      onTextChanged: (val) {
-                        ref.read(pdfProvider.notifier).editActivitySection(widget.section.copyWith(startDate: val));
-                      },
-                    ),
-                  ),
-                  Flexible(
-                    child: RectBorderFormField(
-                      textEditingController: endDateController,
-                      labelText: 'End Date',
-                      onTextChanged: (val) {
-                        ref.read(pdfProvider.notifier).editActivitySection(widget.section.copyWith(endDate: val));
-                      },
-                    ),
-                  ),
-                ],
+              child: RectBorderFormField(
+                textEditingController: startDateController,
+                labelText: 'Start Date',
+                hintText: 'dd/mm/yyyy',
+                onTextChanged: (val) {
+                  ref.read(pdfProvider.notifier).editEmploymentSection(widget.section.copyWith(startDate: val));
+                },
               ),
             ),
+            Flexible(
+              child: RectBorderFormField(
+                textEditingController: endDateController,
+                labelText: 'End Date',
+                hintText: 'dd/mm/yyyy',
+                onTextChanged: (val) {
+                  ref.read(pdfProvider.notifier).editActivitySection(widget.section.copyWith(endDate: val));
+                },
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
             Flexible(
               child: RectBorderFormField(
                 textEditingController: cityController,
@@ -184,7 +211,7 @@ class _SectionFullWidgetState extends ConsumerState<ActivityFullWidget> {
         RectBorderFormField(
           maxLines: 9,
           maxLength: 500,
-          labelText: "Description",
+          labelText: "Role Description",
           textEditingController: descriptionController,
           onTextChanged: (val) {
             ref.read(pdfProvider.notifier).editActivitySection(widget.section.copyWith(description: val));
@@ -196,7 +223,7 @@ class _SectionFullWidgetState extends ConsumerState<ActivityFullWidget> {
               color: Pallete.errorColor,
               buttonWidth: double.infinity,
               onPressed: () => widget.onPressed(),
-              text: 'Remove this activity'),
+              text: 'Remove Activity'),
         )
       ],
     );

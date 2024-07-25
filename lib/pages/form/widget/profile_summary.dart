@@ -23,7 +23,7 @@ class _ProfileSummaryState extends ConsumerState<ProfileSummary> {
 
     Summary summary = _pdfProvider.resumeSummary!;
 
-    WidgetsBinding.instance!.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       setState(() {
         if (checkChangeText(summaryController.text, summary.professionalSummary)) {
           summaryController.text = summary.professionalSummary ?? "";
@@ -43,17 +43,41 @@ class _ProfileSummaryState extends ConsumerState<ProfileSummary> {
               bottom: 10,
               top: 10,
             ),
-            child: Text(
-              'Profile',
-              style: headline20.copyWith(fontWeight: FontWeight.w600),
-            ),
+
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+
+                children: [
+                  Text(
+                    'Profile',
+                    style: headline20.copyWith(fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(height: 8),
+                  Container(
+                    height: 3,
+                    width: 60,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.indigo.withOpacity(0.9),
+                          Colors.purple.withOpacity(0.4),
+                          Colors.purpleAccent.withOpacity(0.1),
+                        ],
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                      ),
+                    ),
+                  ),
+                ],
+              )
+
           ),
           RectBorderFormField(
             textEditingController: summaryController,
             maxLines: 9,
             maxLength: 500,
             labelText: "Summary",
-            hintText: 'eg. I am a motivated IT graduate looking forward...',
+            hintText: 'eg. I am a motivated IT/CS/SE graduate looking forward...',
             onTextChanged: (val) {
               ref.read(pdfProvider.notifier).editSummary(summary.copyWith(professionalSummary: val));
             },

@@ -32,10 +32,34 @@ class LinksInfo extends ConsumerWidget {
               bottom: 20,
               top: 10,
             ),
-            child: Text(
-              'Social Links',
-              style: headline20.copyWith(fontWeight: FontWeight.w600),
-            ),
+
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+
+                children: [
+                  Text(
+                    'Social Links',
+                    style: headline20.copyWith(fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(height: 8),
+                  Container(
+                    height: 3,
+                    width: 110,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.indigo.withOpacity(0.9),
+                          Colors.purple.withOpacity(0.4),
+                          Colors.purpleAccent.withOpacity(0.1),
+                        ],
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                      ),
+                    ),
+                  ),
+                ],
+              )
+
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -66,7 +90,7 @@ class LinksInfo extends ConsumerWidget {
                 onPressed: () {
                   ref.read(pdfProvider.notifier).addLink(Links.createEmpty());
                 },
-                text: 'Add Socials'),
+                text: 'Add Socials +'),
           )
          ),
         ],

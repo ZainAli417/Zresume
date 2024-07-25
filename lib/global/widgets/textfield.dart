@@ -47,7 +47,7 @@ class RectBorderFormField extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 4),
               child: Text(
                 labelText!,
-                style: subtitle14.copyWith(color: Colors.grey.shade600),
+                style: subtitle16.copyWith(color: Colors.grey.shade700),
               ),
             ),
           TextFormField(

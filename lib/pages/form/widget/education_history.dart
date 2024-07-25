@@ -32,10 +32,34 @@ class EducationHistory extends ConsumerWidget {
               bottom: 20,
               top: 10,
             ),
-            child: Text(
-              'Education History',
-              style: headline20.copyWith(fontWeight: FontWeight.w600),
-            ),
+
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+
+                children: [
+                  Text(
+                    'Education Background',
+                    style: headline20.copyWith(fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(height: 8),
+                  Container(
+                    height: 3,
+                    width: 210,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.indigo.withOpacity(0.9),
+                          Colors.purple.withOpacity(0.4),
+                          Colors.purpleAccent.withOpacity(0.1),
+                        ],
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                      ),
+                    ),
+                  ),
+                ],
+              )
+
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -57,15 +81,18 @@ class EducationHistory extends ConsumerWidget {
               itemCount: educationList.length,
             ),
           ),
-          Padding(
+          Center(
+          child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: SimpleElevatedButton(
-                buttonWidth: double.infinity,
+                buttonWidth: 200,
+                buttonHeight: 40,
                 onPressed: () {
                   ref.read(pdfProvider.notifier).addEducationSection(Section.createEmpty());
                 },
-                text: 'Add another education'),
+                text: 'Add Education +'),
           )
+          ),
         ],
       ),
     );
@@ -96,7 +123,7 @@ class _SectionFullWidgetState extends ConsumerState<SectionFullWidget> {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance!.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       setState(() {
         if (checkChangeText(jobController.text, widget.section.textOne)) {
           jobController.text = widget.section.textOne ?? "";
@@ -120,14 +147,14 @@ class _SectionFullWidgetState extends ConsumerState<SectionFullWidget> {
     });
 
     return BorderedExpansionTile(
-      title: widget.section.textOne ?? "Test",
+      title: widget.section.textOne ?? "NUST,FAST,ARID,QAU,NUMS.....",
       children: [
         Row(
           children: [
             Flexible(
               child: RectBorderFormField(
                 textEditingController: jobController,
-                labelText: 'School',
+                labelText: 'School/University',
                 onTextChanged: (val) {
                   ref.read(pdfProvider.notifier).editEducationSection(widget.section.copyWith(textOne: val));
                 },
@@ -136,7 +163,7 @@ class _SectionFullWidgetState extends ConsumerState<SectionFullWidget> {
             Flexible(
               child: RectBorderFormField(
                 textEditingController: employerController,
-                labelText: 'Degree',
+                labelText: 'Board/Degree',
                 onTextChanged: (val) {
                   ref.read(pdfProvider.notifier).editEducationSection(widget.section.copyWith(textTwo: val));
                 },
@@ -147,29 +174,29 @@ class _SectionFullWidgetState extends ConsumerState<SectionFullWidget> {
         Row(
           children: [
             Flexible(
-              child: Row(
-                children: [
-                  Flexible(
-                    child: RectBorderFormField(
-                      textEditingController: startDateController,
-                      labelText: 'Start Date',
-                      onTextChanged: (val) {
-                        ref.read(pdfProvider.notifier).editEducationSection(widget.section.copyWith(startDate: val));
-                      },
-                    ),
-                  ),
-                  Flexible(
-                    child: RectBorderFormField(
-                      textEditingController: endDateController,
-                      labelText: 'End Date',
-                      onTextChanged: (val) {
-                        ref.read(pdfProvider.notifier).editEducationSection(widget.section.copyWith(endDate: val));
-                      },
-                    ),
-                  ),
-                ],
+              child: RectBorderFormField(
+                textEditingController: startDateController,
+                labelText: 'Start Date',
+                hintText: 'dd/mm/yyyy',
+                onTextChanged: (val) {
+                  ref.read(pdfProvider.notifier).editEducationSection(widget.section.copyWith(startDate: val));
+                },
               ),
             ),
+            Flexible(
+              child: RectBorderFormField(
+                textEditingController: endDateController,
+                labelText: 'End Date',
+                hintText: 'dd/mm/yyyy',
+                onTextChanged: (val) {
+                  ref.read(pdfProvider.notifier).editEducationSection(widget.section.copyWith(endDate: val));
+                },
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
             Flexible(
               child: RectBorderFormField(
                 textEditingController: cityController,
@@ -196,7 +223,7 @@ class _SectionFullWidgetState extends ConsumerState<SectionFullWidget> {
               color: Pallete.errorColor,
               buttonWidth: double.infinity,
               onPressed: () => widget.onPressed(),
-              text: 'Remove this education'),
+              text: 'Remove Education'),
         )
       ],
     );

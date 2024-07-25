@@ -32,10 +32,34 @@ class LanguagesInfo extends ConsumerWidget {
               bottom: 20,
               top: 10,
             ),
-            child: Text(
-              'Your Languages',
-              style: headline20.copyWith(fontWeight: FontWeight.w600),
-            ),
+
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+
+                children: [
+                  Text(
+                    'Speaking',
+                    style: headline20.copyWith(fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(height: 8),
+                  Container(
+                    height: 3,
+                    width: 80,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.indigo.withOpacity(0.9),
+                          Colors.purple.withOpacity(0.4),
+                          Colors.purpleAccent.withOpacity(0.1),
+                        ],
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                      ),
+                    ),
+                  ),
+                ],
+              )
+
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -57,15 +81,18 @@ class LanguagesInfo extends ConsumerWidget {
               itemCount: languagesList.length,
             ),
           ),
-          Padding(
+          Center(
+          child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: SimpleElevatedButton(
-                buttonWidth: double.infinity,
+                buttonWidth: 200,
+                buttonHeight: 40,
                 onPressed: () {
                   ref.read(pdfProvider.notifier).addLanguage(Skill.createEmpty());
                 },
-                text: 'Add another language'),
+                text: 'Add Language +'),
           )
+          ),
         ],
       ),
     );
@@ -100,11 +127,11 @@ class _SectionFullWidgetState extends ConsumerState<LanguageFullWidget> {
     });
 
     return BorderedExpansionTile(
-      title: widget.language.skillName ?? "Test",
+      title: widget.language.skillName ?? "English,Urdu....",
       children: [
         RectBorderFormField(
           textEditingController: languageNameController,
-          labelText: 'Skill Name',
+          labelText: 'Language',
           onTextChanged: (val) {
             ref.read(pdfProvider.notifier).editLanguage(widget.language.copyWith(skillName: val));
           },

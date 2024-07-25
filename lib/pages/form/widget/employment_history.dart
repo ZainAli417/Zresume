@@ -32,10 +32,34 @@ class EmploymentHistory extends ConsumerWidget {
               bottom: 20,
               top: 10,
             ),
-            child: Text(
-              'Employment Experience',
-              style: headline20.copyWith(fontWeight: FontWeight.w600),
-            ),
+
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+
+                children: [
+                  Text(
+                    'Employment Experience',
+                    style: headline20.copyWith(fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(height: 8),
+                  Container(
+                    height: 3,
+                    width: 220,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.indigo.withOpacity(0.9),
+                          Colors.purple.withOpacity(0.4),
+                          Colors.purpleAccent.withOpacity(0.1),
+                        ],
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                      ),
+                    ),
+                  ),
+                ],
+              )
+
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -67,7 +91,7 @@ class EmploymentHistory extends ConsumerWidget {
                 onPressed: () {
                   ref.read(pdfProvider.notifier).addEmploymentSection(Section.createEmpty());
                 },
-                text: 'Add Employment'),
+                text: 'Add Employment+'),
           )
           ),
         ],
@@ -122,9 +146,8 @@ class _SectionFullWidgetState extends ConsumerState<EmploymentFullWidget> {
         }
       });
     });
-
     return BorderedExpansionTile(
-      title: widget.section.textOne ?? "Android Developer,Wordpress,Flutter....",
+      title: widget.section.textOne ?? "Android Developer, Wordpress, Flutter....",
       children: [
         Row(
           children: [
@@ -151,29 +174,29 @@ class _SectionFullWidgetState extends ConsumerState<EmploymentFullWidget> {
         Row(
           children: [
             Flexible(
-              child: Row(
-                children: [
-                  Flexible(
-                    child: RectBorderFormField(
-                      textEditingController: startDateController,
-                      labelText: 'Start Date',
-                      onTextChanged: (val) {
-                        ref.read(pdfProvider.notifier).editEmploymentSection(widget.section.copyWith(startDate: val));
-                      },
-                    ),
-                  ),
-                  Flexible(
-                    child: RectBorderFormField(
-                      textEditingController: endDateController,
-                      labelText: 'End Date',
-                      onTextChanged: (val) {
-                        ref.read(pdfProvider.notifier).editEmploymentSection(widget.section.copyWith(endDate: val));
-                      },
-                    ),
-                  ),
-                ],
+              child: RectBorderFormField(
+                textEditingController: startDateController,
+                labelText: 'Start Date',
+                hintText: 'dd/mm/yyyy',
+                onTextChanged: (val) {
+                  ref.read(pdfProvider.notifier).editEmploymentSection(widget.section.copyWith(startDate: val));
+                },
               ),
             ),
+            Flexible(
+              child: RectBorderFormField(
+                textEditingController: endDateController,
+                labelText: 'End Date',
+                hintText: 'dd/mm/yyyy',
+                onTextChanged: (val) {
+                  ref.read(pdfProvider.notifier).editEmploymentSection(widget.section.copyWith(endDate: val));
+                },
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
             Flexible(
               child: RectBorderFormField(
                 textEditingController: cityController,
@@ -200,9 +223,10 @@ class _SectionFullWidgetState extends ConsumerState<EmploymentFullWidget> {
               color: Pallete.errorColor,
               buttonWidth: double.infinity,
               onPressed: () => widget.onPressed(),
-              text: 'Remove this employment'),
+              text: 'Remove Employment'),
         )
       ],
     );
+
   }
 }
