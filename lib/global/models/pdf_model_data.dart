@@ -26,7 +26,6 @@ Section employmentSectionData = const Section(
     endDate: 'PRESENT',
     description:
         'With a profound expertise in Cyber Security, Web Development, and Mobile App Development, I am a dedicated professional committed to continuous learning and technological advancement. As a native Linux user, I specialize in network security configurations and Windows troubleshooting. My proficiency extends to web and Android development, particularly in Flutter app development, where I craft exceptional digital experiences. Certified by Google, IBM, Coursera, Meta and EC-Council, I excel in IT support and virtual machine installation using Hyper-V and Sandbox environments. Proficient in MS Office 365 products, I streamline operations and drive productivity. My professional journey is driven by a passion for crafting exceptional digital experiences and a dedication to delivering results that exceed expectations. I thrive on challenges and am enthusiastic about tackling new projects and embracing innovative solutions.');
-
 Section activitySectionData = const Section(
     sectionId: 'activitySection',
     textOne: 'Blogger',
